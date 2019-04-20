@@ -19,3 +19,6 @@ resolve dependencies
 We can run comment
 `./.build/x86_64-apple-macosx/debug/textoru`
 > Hello, world!
+
+お好みで
+`swift package generate-xcodeproj`
