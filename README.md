@@ -1,6 +1,8 @@
 # textoru
 
-We can run `textoru {absolute path}`
+This tool can extract texts from swift code, xib and storyboard.
+
+Let's run `textoru {absolute path of file or directory}`.
 
 ## Output
 
