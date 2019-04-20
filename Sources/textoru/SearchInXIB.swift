@@ -25,10 +25,10 @@ class TextVisitorForXIB: NSObject {
 extension TextVisitorForXIB: XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        if let title = attributeDict["title"] {
-            print(title)
-        } else if let text = attributeDict["text"] {
-            print(text)
+        for textHolderKey in textHolderKeys {
+            if let title = attributeDict[textHolderKey] {
+                print(title)
+            } 
         }
     }
 }
