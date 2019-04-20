@@ -1,24 +1,22 @@
 # textoru
 
-A description of this package.
+We can run `textoru {absolute path}`
 
-## First step
-`swift package init --type executable`
+## Output
 
-write dependencies
-neet to add following config. if it is not written, failt at installing by mint.
+### format
 ```
-products: [
-.executable(name: "textoru", targets: ["textoru"])
-],
+{filename}    {line}:{column}    {text}
 ```
 
-`swift build`
-resolve dependencies
-
-We can run comment
-`./.build/x86_64-apple-macosx/debug/textoru`
-> Hello, world!
-
-お好みで
-`swift package generate-xcodeproj`
+### Sample output
+```
+textoruTests.swift    31:15    prefix_____\(pipe)_____suffix
+textoruTests.swift    37:75    .xctest
+textoruTests.swift    40:20    couldn't find the products directory
+textoruTests.swift    47:10    testExample
+textoruTests.xib    18:360    Label のテキスト
+textoruTests.xib    32:61    Button のテキスト
+textoruTests.storyboard    20:372    Label のテキスト
+textoruTests.storyboard    34:73    Button のテキスト
+```

@@ -16,11 +16,20 @@ enum StringSyntaxFamily {
     var text: String {
         switch self {
         case .stringLiteralSyntax(let syntax):
-            return syntax.stringLiteral.withoutTrivia().text
+            return String(syntax.stringLiteral.withoutTrivia().text
+                .dropFirst().dropLast()) // drop top and tail `"`
         case .stringInterpolationExprSyntax(let syntax):
             return syntax.segments.map {
                 $0.description
                 }.joined()
+        }
+    }
+    
+    var position: AbsolutePosition {
+        switch self {
+        case .stringLiteralSyntax(let syntax as Syntax),
+             .stringInterpolationExprSyntax(let syntax as Syntax):
+            return syntax.position
         }
     }
 }
@@ -47,7 +56,7 @@ class TextVisitor: SyntaxVisitor {
 class TextFounder {
     var texts: [StringSyntaxFamily] = []
     
-    func run(file: File) {
+    func run(file: File) -> [FoundText] {
         let fileURL = URL(fileURLWithPath: file.path)
         let syntaxTree = try! SyntaxTreeParser.parse(fileURL)
         
@@ -55,6 +64,11 @@ class TextFounder {
             self.texts.append(syntax)
         }
         syntaxTree.walk(textVisitor)
-        dump(texts.map { $0.text })
+        
+        return texts.map {
+            FoundText(filename: file.name,
+                      position: "\($0.position.line):\($0.position.column)",
+                      text: $0.text)
+        }
     }
 }
