@@ -27,6 +27,21 @@ Let's run `textoru -h=true {path of file or directory}` at run script!
 
 <img width="1041" alt="スクリーンショット 2019-04-20 18 06 04" src="https://user-images.githubusercontent.com/2020337/56455271-42984e00-6397-11e9-8f87-0defd55a07dc.png">
 
+## Installation
+### Makefile
+
+```shell
+$ git clone git@github.com:ezura/textoru.git
+$ cd textoru
+$ make
+```
+
+### [Mint](https://github.com/yonaskolb/mint)
+
+```shell
+$ mint install ezura/textoru
+```
+
 ## Usage
 
 ```
