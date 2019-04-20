@@ -73,3 +73,7 @@ class TextFounder {
 FileVisitor().visit(directoryOrFilePath: "./Tests/textoruTests/", fileExtension: "swift") { (file) in
     TextFounder().run(file: file)
 }
+
+FileVisitor().visit(directoryOrFilePath: "./Tests/textoruTests/", fileExtension: "xib") { (file) in
+    TextVisitorForXIB().visit(file: file)
+}
