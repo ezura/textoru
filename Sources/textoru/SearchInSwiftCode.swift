@@ -16,7 +16,8 @@ enum StringSyntaxFamily {
     var text: String {
         switch self {
         case .stringLiteralSyntax(let syntax):
-            return syntax.stringLiteral.withoutTrivia().text
+            return String(syntax.stringLiteral.withoutTrivia().text
+                .dropFirst().dropLast()) // drop top and tail `"`
         case .stringInterpolationExprSyntax(let syntax):
             return syntax.segments.map {
                 $0.description
