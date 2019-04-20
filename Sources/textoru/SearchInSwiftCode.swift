@@ -17,7 +17,11 @@ enum StringSyntaxFamily {
         switch self {
         case .stringLiteralSyntax(let syntax):
             return String(syntax.stringLiteral.withoutTrivia().text
-                .dropFirst().dropLast()) // drop top and tail `"`
+                .replacingOccurrences(
+                    of: #"(^"+|"+$)"#,
+                    with: "",
+                    options: .regularExpression
+                ))
         case .stringInterpolationExprSyntax(let syntax):
             return syntax.segments.map {
                 $0.description

@@ -29,6 +29,17 @@ final class textoruTests: XCTestCase {
         XCTAssertEqual(output, "Hello, world!\n")
         
         print("prefix_____\(pipe)_____suffix")
+        print("""
+              multi
+              line
+              text
+              """)
+        print(#"^""""#)
+        print(#"""
+              multi
+              line
+              text
+              """#)
     }
 
     /// Returns path to the built products directory.

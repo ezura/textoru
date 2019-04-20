@@ -13,6 +13,12 @@ struct FoundText {
     let text: String
     
     func printSeparate(by separator: String) {
-        print(filename, position, text, separator: separator)
+        let formedText = text.replacingOccurrences(of: #" +"#, 
+                                                   with: " ",
+                                                   options: .regularExpression)
+                             .replacingOccurrences(of: "\n", 
+                                                   with: "\\n")
+
+        print(filename, position, formedText, separator: separator)
     }
 }
