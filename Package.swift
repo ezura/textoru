@@ -11,7 +11,8 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/JohnSundell/Files.git", from: "2.2.1"),
         .package(url: "https://github.com/JohnSundell/ShellOut.git", .branch("master")),
-        .package(url: "https://github.com/apple/swift-syntax.git", .exact("0.50000.0"))
+        .package(url: "https://github.com/apple/swift-syntax.git", .exact("0.50000.0")),
+        .package(url: "https://github.com/apple/swift-package-manager.git", .branch("master")),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -22,6 +23,7 @@ let package = Package(
                 "Files",
                 "ShellOut",
                 "SwiftSyntax",
+                "SPMUtility",
             ]),
         .testTarget(
             name: "textoruTests",
