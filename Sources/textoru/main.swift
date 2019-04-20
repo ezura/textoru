@@ -40,6 +40,12 @@ class TextVisitor: SyntaxVisitor {
 class FileVisitor {
     typealias OnFoundBlock = (File) -> Void
     
+    func visit(directoryOrFilePath rootPath: String, fileExtensions: String..., onFound: OnFoundBlock) {
+        for fileExtension in fileExtensions {
+            visit(directoryOrFilePath: rootPath, fileExtension: fileExtension, onFound: onFound)
+        }
+    }
+    
     func visit(directoryOrFilePath rootPath: String, fileExtension: String, onFound: OnFoundBlock) {
         let currentFolder = FileSystem().currentFolder
         
@@ -72,4 +78,8 @@ class TextFounder {
 
 FileVisitor().visit(directoryOrFilePath: "./Tests/textoruTests/", fileExtension: "swift") { (file) in
     TextFounder().run(file: file)
+}
+
+FileVisitor().visit(directoryOrFilePath: "./Tests/textoruTests/", fileExtensions: "xib", "storyboard") { (file) in
+    TextVisitorForXIB().visit(file: file)
 }
