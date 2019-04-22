@@ -2,7 +2,7 @@ INSTALL_PATH = /usr/local/bin/textoru
 
 install:
 	swift package update
-	swift build -c release -Xswiftc -static-stdlib
+	swift build -c release
 	cp -f .build/release/textoru $(INSTALL_PATH)
 
 uninstall:
