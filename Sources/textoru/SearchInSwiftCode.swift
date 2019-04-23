@@ -48,7 +48,7 @@ class TextVisitor: SyntaxVisitor {
     
     override func visit(_ node: StringLiteralExprSyntax) -> SyntaxVisitorContinueKind {
         onFound(.stringLiteralSyntax(node))
-        return super.visit(node)
+        return .skipChildren
     }
     
     override func visit(_ node: StringInterpolationExprSyntax) -> SyntaxVisitorContinueKind {
@@ -70,7 +70,7 @@ class TextFounder {
         syntaxTree.walk(textVisitor)
         
         return texts.map {
-            FoundText(filename: file.name,
+            FoundText(filename: file.path,
                       position: "\($0.position.line):\($0.position.column)",
                       text: $0.text)
         }
