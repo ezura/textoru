@@ -70,7 +70,7 @@ class TextFounder {
         syntaxTree.walk(textVisitor)
         
         return texts.map {
-            FoundText(filename: file.path,
+            FoundText(filename: file.name,
                       position: "\($0.position.line):\($0.position.column)",
                       text: $0.text)
         }
